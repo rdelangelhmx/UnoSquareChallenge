@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:validator="clr-namespace:Challenge.Behaviors"
+             x:Class="Challenge.MainPage">
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="{Binding BundleName}" HorizontalTextAlignment="Center" TextColor="White" FontSize="26"/>
+        </Frame>
+        <Entry x:Name="txtMarca" 
+            Placeholder="Marca"
+            Style="{StaticResource Input}"
+            Completed="txtMarca_Completed"
+            Text="{Binding Marca}">
+            <Entry.Behaviors>
+                <validator:EntryTextBehavior />
+            </Entry.Behaviors>
+        </Entry>
+    
+        <Entry x:Name="txtModelo" 
+            Placeholder="Modelo"
+            Style="{StaticResource Input}"
+            Completed="txtModelo_Completed"
+            Text="{Binding Modelo}" />
+
+        <Entry x:Name="txtAnio" 
+            Placeholder="Anio"
+            Style="{StaticResource Input}"
+            Completed="txtAnio_Completed"
+            Text="{Binding Anio}" />
+
+        <Button x:Name="addData"
+            Text="Agregar"
+            HorizontalOptions="FillAndExpand"
+            Clicked="addData_Clicked"
+            FontSize="Title" />
+
+        <CollectionView x:Name="cvItwms"
+            ItemsSource="{Binding Data}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Spacing="8" HorizontalOptions="EndAndExpand">
+                        <Frame Style="{StaticResource FrameCard}">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Marca:" Style="{StaticResource NameLabel}" />
+                                <Label CharacterSpacing="1" Text="{Binding Marca}" Style="{StaticResource ContentLabel}" />
+                                <Label CharacterSpacing="4" Text="Modelo:" Style="{StaticResource NameLabel}" />
+                                <Label CharacterSpacing="1" Text="{Binding Modelo}" Style="{StaticResource ContentLabel}" />
+                                <Label CharacterSpacing="4" Text="Año:" Style="{StaticResource NameLabel}" />
+                                <Label CharacterSpacing="1" Text="{Binding Anio}" Style="{StaticResource ContentLabel}" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
